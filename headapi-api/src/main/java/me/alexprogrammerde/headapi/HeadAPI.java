@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.annotation.Nonnull;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -21,7 +22,7 @@ import java.util.Base64;
 import java.util.Objects;
 
 public final class HeadAPI {
-    public static BufferedImage getHeadImage(Player player)  {
+    public static @Nonnull BufferedImage getHeadImage(Player player) {
         if (!player.getPlayerProfile().isComplete()) {
             player.getPlayerProfile().complete();
         }
@@ -46,7 +47,14 @@ public final class HeadAPI {
             }
         }
 
-        return null;
+        BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        try {
+            image = ImageIO.read(HeadAPI.class.getClassLoader().getResourceAsStream("steve.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return image;
     }
 
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {

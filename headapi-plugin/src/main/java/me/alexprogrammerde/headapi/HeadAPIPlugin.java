@@ -31,7 +31,7 @@ public final class HeadAPIPlugin extends JavaPlugin implements Listener {
 
         try
         {
-            ImageIO.write(HeadAPI.getHeadImage(event.getPlayer()), "png", os);
+            ImageIO.write(HeadAPI.resize(HeadAPI.getHeadImage(event.getPlayer()), 30, 30), "png", os);
             getLogger().info(Base64.getEncoder().encodeToString(os.toByteArray()));
         }
         catch (final IOException ioe)
