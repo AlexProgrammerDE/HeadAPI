@@ -1,0 +1,3 @@
+name: HeadAPI
+main: me.alexprogrammerde.headapi.HeadAPIPlugin
+version: 1.0.0
